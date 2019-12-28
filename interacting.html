@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Traveling</title>
+</head>
+
+<body>
+  <script>
+    // Characters
+    var tigger = {
+      character: "Tigger",
+      greet: function () {
+        console.log("The wonderful thing about Tiggers is Tiggers are wonderful things!")
+      }
+    };
+    var pooh = {
+      character: "Winnie the Pooh",
+      greet: function () {
+        console.log("Oh bother!")
+      }
+    };
+    var piglet = {
+      character: "Piglet",
+      greet: function () {
+        console.log("Oh d-d-d-dear! I wasn't expecting company!")
+      }
+    };
+    var owl = {
+      character: "Owl",
+      greet: function () {
+        console.log("Hoo")
+      }
+    };
+    var robin = {
+      character: "Christopher Robin",
+      greet: function () {
+        console.log("Hi there!")
+      }
+    };
+    var rabbit = {
+      character: "Rabbit",
+      greet: function () {
+        console.log("Hop")
+      }
+    };
+    var gopher = {
+      character: "Gopher",
+      greet: function () {
+        console.log("Wow")
+      }
+    };
+    var bees = {
+      character: "Bees",
+      greet: function () {
+        console.log("Bzzzzzz")
+      }
+    };
+    var kanga = {
+      character: "Kanga",
+      greet: function () {
+        console.log("Who?")
+      }
+    };
+    var eeyore = {
+      character: "Eeyore",
+      greet: function () {
+        console.log("Eeeeeeeee")
+      }
+    };
+    var heffalumps = {
+      character: "Heffalumps",
+      greet: function () {
+        console.log("Heffa")
+      }
+    };
+
+    tigger.north = pooh;
+
+    pooh.south = tigger;
+    pooh.east = bees;
+    pooh.west = piglet;
+    pooh.north = robin;
+
+    bees.west = pooh;
+    bees.north = rabbit;
+
+    piglet.north = owl;
+    piglet.east = pooh;
+    piglet.east.east = pooh.east;
+    piglet.east.south = pooh.south;
+    piglet.north.east = owl.east;
+
+    owl.south = piglet;
+    owl.east = robin;
+
+    robin.north = kanga;
+    robin.south = pooh;
+    robin.east = rabbit;
+    robin.west = owl;
+
+    rabbit.west = robin;
+    rabbit.south = bees;
+    rabbit.east = gopher;
+
+    gopher.west = rabbit;
+
+    kanga.south = robin;
+    kanga.north = eeyore;
+
+    eeyore.south = kanga;
+    eeyore.east = heffalumps;
+
+
+    // Player
+    var player = {
+      location: tigger
+    };
+
+    function printLocation() {
+      console.log("You are now at " + player.location.character + "'s house.");
+    }
+    printLocation();
+
+    function moveLocation(dir) {
+      if (dir == "North" || dir == "north") {
+        if (player.location.north == null) {
+          console.log("There is no house north!")
+        }
+        else {
+          player.location = player.location.north;
+          printLocation();
+          player.location.greet();
+        }
+      }
+      else if (dir == "East" || dir == "east") {
+        if (player.location.east == null) {
+          console.log("There is no house east!")
+        }
+        else {
+          player.location = player.location.east;
+          printLocation();
+          player.location.greet();
+        }
+      }
+      else if (dir == "South" || dir == "south") {
+        if (player.location.south == null) {
+          console.log("There is no house south!")
+        }
+        else {
+          player.location = player.location.south;
+          printLocation();
+          player.location.greet();
+        }
+      }
+      else if (dir == "West" || dir == "west") {
+        if (player.location.west == null) {
+          console.log("There is no house west!")
+        }
+        else {
+          player.location = player.location.west;
+          printLocation();
+          player.location.greet();
+        }
+      }
+      else {
+        console.log("You did not enter a valid direction, try again!")
+      }
+    }
+  </script>
+</body>
+
+</html>
